@@ -13,6 +13,9 @@ use Modules\Customers\CustomerController;
 use Modules\Devices\DeviceController;
 use Modules\Monitoring\MonitoringController;
 use Modules\Incidents\IncidentController;
+use Modules\Sessions\SessionController;
+use Modules\Audit\AuditController;
+use Modules\Settings\SettingsController;
 
 return function (Application $app): void {
 
@@ -105,6 +108,47 @@ return function (Application $app): void {
                 '/users/{id}/delete',
                 [UserController::class, 'delete']
             );
+
+
+            /*
+ * Sessions
+ */
+
+$router->get(
+    '/sessions',
+    [SessionController::class, 'index']
+);
+
+$router->get(
+    '/sessions/{id}',
+    [SessionController::class, 'show']
+);
+
+/*
+ * Audit Logs
+ */
+
+$router->get(
+    '/audit',
+    [AuditController::class, 'index']
+);
+
+$router->get(
+    '/audit/{id}',
+    [AuditController::class, 'show']
+);
+
+
+/*
+             * Settings
+             */
+
+            $router->get(
+                '/settings',
+                [SettingsController::class, 'index']
+            );
+
+
         }
     );
 
